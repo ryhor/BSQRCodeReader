@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
 This plugin is created to read QR Code inside your app. BSQRCodeReader is inherited from UIView so you can use your own page design and include this reader to be part of your layout.
                        DESC
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/BSQRCodeReader"
+  s.homepage         = "https://github.com/icemanbsi/BSQRCodeReader"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Bobby Stenly" => "iceman.bsi@gmail.com" }
