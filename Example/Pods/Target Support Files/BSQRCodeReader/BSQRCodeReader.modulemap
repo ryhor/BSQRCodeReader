@@ -1,0 +1,6 @@
+framework module BSQRCodeReader {
+  umbrella header "BSQRCodeReader-umbrella.h"
+
+  export *
+  module * { export * }
+}

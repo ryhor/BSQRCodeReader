@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = "BSQRCodeReader"
-  s.version          = "0.1.0"
-  s.summary          = "A short description of BSQRCodeReader."
+  s.version          = "1.0.0"
+  s.summary          = "QR Code Reader that fits your page design."
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,13 +17,14 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = <<-DESC
+This plugin is created to read QR Code inside your app. BSQRCodeReader is inherited from UIView so you can use your own page design and include this reader to be part of your layout.
                        DESC
 
   s.homepage         = "https://github.com/<GITHUB_USERNAME>/BSQRCodeReader"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Bobby Stenly" => "iceman.bsi@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/BSQRCodeReader.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/icemanbsi/BSQRCodeReader.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '8.0'

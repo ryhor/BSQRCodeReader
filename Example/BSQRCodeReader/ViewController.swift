@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import BSQRCodeReader
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, BSQRCodeReaderDelegate {
 
+    @IBOutlet weak var reader: BSQRCodeReader!
+    @IBOutlet weak var lblResult: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.reader.delegate = self
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.reader.startScanning()
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,5 +32,20 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    // MARK: BSQRCodeReaderDelegate 
+    func didFailWithError(error: NSError) {
+        
+    }
+    func beforeStartScanning(reader: BSQRCodeReader){
+        
+    }
+    func afterStopScanning(reader: BSQRCodeReader){
+        
+    }
+    func didCaptureQRCodeWithContent(content: String) -> Bool {
+        self.lblResult.text = content
+        return true
+    }
 }
 
