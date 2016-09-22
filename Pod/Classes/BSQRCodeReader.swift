@@ -14,28 +14,28 @@ import UIKit
 import AVFoundation
 
 public protocol BSQRCodeReaderDelegate {
-    func didFailWithError(error: NSError)
-    func didCaptureQRCodeWithContent(content: String) -> Bool
-    func beforeStartScanning(reader: BSQRCodeReader)
-    func afterStopScanning(reader: BSQRCodeReader)
+    func didFailWithError(_ error: NSError)
+    func didCaptureQRCodeWithContent(_ content: String) -> Bool
+    func beforeStartScanning(_ reader: BSQRCodeReader)
+    func afterStopScanning(_ reader: BSQRCodeReader)
 }
 
 public extension BSQRCodeReaderDelegate {
-    func didFailWithError(error: NSError) { }
-    func didCaptureQRCodeWithContent(content: String) -> Bool { return true }
-    func beforeStartScanning(reader: BSQRCodeReader) { }
-    func afterStopScanning(reader: BSQRCodeReader) { }
+    func didFailWithError(_ error: NSError) { }
+    func didCaptureQRCodeWithContent(_ content: String) -> Bool { return true }
+    func beforeStartScanning(_ reader: BSQRCodeReader) { }
+    func afterStopScanning(_ reader: BSQRCodeReader) { }
 }
 
-public class BSQRCodeReader: UIView, AVCaptureMetadataOutputObjectsDelegate {
+open class BSQRCodeReader: UIView, AVCaptureMetadataOutputObjectsDelegate {
 
     // -- public attributes
-    public var delegate: BSQRCodeReaderDelegate?
+    open var delegate: BSQRCodeReaderDelegate?
     // -- public attributes
     
     
     var captureSession: AVCaptureSession = AVCaptureSession()
-    var captureDevice: AVCaptureDevice? = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+    var captureDevice: AVCaptureDevice? = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
     var deviceInput: AVCaptureDeviceInput?
     var metadataOutput: AVCaptureMetadataOutput = AVCaptureMetadataOutput()
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
@@ -50,7 +50,7 @@ public class BSQRCodeReader: UIView, AVCaptureMetadataOutputObjectsDelegate {
         self.setup()
     }
     
-    private func setup(){
+    fileprivate func setup(){
         let preset = AVCaptureSessionPresetHigh
         if self.captureSession.canSetSessionPreset(preset) {
             self.captureSession.sessionPreset = preset
@@ -71,7 +71,7 @@ public class BSQRCodeReader: UIView, AVCaptureMetadataOutputObjectsDelegate {
             self.captureSession.addInput(captureInput)
         }
         
-        self.metadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        self.metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         self.captureSession.addOutput(self.metadataOutput)
         
         self.metadataOutput.metadataObjectTypes = self.metadataOutput.availableMetadataObjectTypes
@@ -79,42 +79,42 @@ public class BSQRCodeReader: UIView, AVCaptureMetadataOutputObjectsDelegate {
         self.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         self.layer.addSublayer(self.videoPreviewLayer)
         
-        self.updateVideoOrientation(UIApplication.sharedApplication().statusBarOrientation)
+        self.updateVideoOrientation(UIApplication.shared.statusBarOrientation)
     }
     
-    private func updateVideoOrientation(orientation:UIInterfaceOrientation){
+    fileprivate func updateVideoOrientation(_ orientation:UIInterfaceOrientation){
         
         switch orientation {
-        case .Portrait :
-            videoPreviewLayer.connection?.videoOrientation = .Portrait
+        case .portrait :
+            videoPreviewLayer.connection?.videoOrientation = .portrait
             break
-        case .PortraitUpsideDown :
-            videoPreviewLayer.connection?.videoOrientation = .PortraitUpsideDown
+        case .portraitUpsideDown :
+            videoPreviewLayer.connection?.videoOrientation = .portraitUpsideDown
             break
-        case .LandscapeLeft :
-            videoPreviewLayer.connection?.videoOrientation = .LandscapeLeft
+        case .landscapeLeft :
+            videoPreviewLayer.connection?.videoOrientation = .landscapeLeft
             break
-        case .LandscapeRight :
-            videoPreviewLayer.connection?.videoOrientation = .LandscapeRight
+        case .landscapeRight :
+            videoPreviewLayer.connection?.videoOrientation = .landscapeRight
             break
         default:
-            videoPreviewLayer.connection?.videoOrientation = .Portrait
+            videoPreviewLayer.connection?.videoOrientation = .portrait
         }
     }
     
     
     
-    public func startScanning() {
+    open func startScanning() {
         self.captureSession.startRunning()
     }
     
-    public func stopScanning() {
+    open func stopScanning() {
         self.captureSession.stopRunning()
     }
     
     
     // -- MARK : AVCaptureMetadataOutputObjectsDelegate
-    public func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    open func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
         var detectionString:String?
         

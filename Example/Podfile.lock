@@ -1,0 +1,14 @@
+PODS:
+  - BSQRCodeReader (0.1.0)
+
+DEPENDENCIES:
+  - BSQRCodeReader (from `../`)
+
+EXTERNAL SOURCES:
+  BSQRCodeReader:
+    :path: ../
+
+SPEC CHECKSUMS:
+  BSQRCodeReader: 91354c8cb1ee77935fbca70661a61ab82d5e6a00
+
+COCOAPODS: 0.39.0

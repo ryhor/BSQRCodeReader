@@ -21,7 +21,7 @@ class ViewController: UIViewController, BSQRCodeReaderDelegate {
         self.reader.delegate = self
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         self.reader.startScanning()
@@ -34,16 +34,16 @@ class ViewController: UIViewController, BSQRCodeReaderDelegate {
 
     
     // MARK: BSQRCodeReaderDelegate 
-    func didFailWithError(error: NSError) {
+    func didFailWithError(_ error: NSError) {
         
     }
-    func beforeStartScanning(reader: BSQRCodeReader){
+    func beforeStartScanning(_ reader: BSQRCodeReader){
         
     }
-    func afterStopScanning(reader: BSQRCodeReader){
+    func afterStopScanning(_ reader: BSQRCodeReader){
         
     }
-    func didCaptureQRCodeWithContent(content: String) -> Bool {
+    func didCaptureQRCodeWithContent(_ content: String) -> Bool {
         self.lblResult.text = content
         return true
     }
