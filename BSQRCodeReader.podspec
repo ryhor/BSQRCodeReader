@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "BSQRCodeReader"
-  s.version          = "2.0.0"
+  s.version          = "2.0.1"
   s.summary          = "QR Code Reader that fits your page design."
 
 # This description is used to generate tags and improve search results.
@@ -32,7 +32,7 @@ This plugin is created to read QR Code inside your app. BSQRCodeReader is inheri
 
   s.source_files = 'Pod/Classes/**/*'
   s.resource_bundles = {
-    'BSQRCodeReader' => ['Pod/Assets/*.png']
+#'BSQRCodeReader' => ['Pod/Assets/*.png']
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
