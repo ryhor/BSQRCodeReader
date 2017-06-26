@@ -33,12 +33,13 @@ open class BSQRCodeReader: UIView, AVCaptureMetadataOutputObjectsDelegate {
     open var delegate: BSQRCodeReaderDelegate?
     // -- public attributes
     
-    
     var captureSession: AVCaptureSession = AVCaptureSession()
     var captureDevice: AVCaptureDevice? = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
     var deviceInput: AVCaptureDeviceInput?
     var metadataOutput: AVCaptureMetadataOutput = AVCaptureMetadataOutput()
-    var videoPreviewLayer: AVCaptureVideoPreviewLayer!
+    
+    /// Preview layer, that can be accessed from outside
+    private (set) open var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     
     required public override init(frame: CGRect) {
         super.init(frame: frame)
