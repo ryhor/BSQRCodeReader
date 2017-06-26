@@ -39,8 +39,7 @@ open class BSQRCodeReader: UIView, AVCaptureMetadataOutputObjectsDelegate {
     var metadataOutput: AVCaptureMetadataOutput = AVCaptureMetadataOutput()
     
     /// Preview layer, that can be accessed from outside
-    private (set) open var 
-    : AVCaptureVideoPreviewLayer!
+    private (set) open var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     
     required public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,7 +57,6 @@ open class BSQRCodeReader: UIView, AVCaptureMetadataOutputObjectsDelegate {
             self.captureSession.sessionPreset = preset
         }
         self.videoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-        self.videoPreviewLayer.frame = self.bounds
         
         do {
             self.deviceInput = try AVCaptureDeviceInput(device: self.captureDevice)
@@ -139,8 +137,8 @@ open class BSQRCodeReader: UIView, AVCaptureMetadataOutputObjectsDelegate {
         }
     }
     
-    override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
-        self.videoPreviewLayer.frame = self.bounds
+        self.videoPreviewLayer?.frame = self.bounds
     }
 }
